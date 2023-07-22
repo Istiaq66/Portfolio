@@ -2,267 +2,663 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--=============== FAVICON ===============-->
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+
+  <!--=============== REMIXICONS ===============-->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <title>Istiaq Ahmed</title>
 </head>
 
 <body>
-  <!-- Header -->
-  <section id="header">
-    <div class="header container">
-      <div class="nav-bar">
-        <div class="brand">
-          <a href="#hero">
-            <h1><span>I</span>stiaq <span>A</span>hmed</h1>
-          </a>
+  <!--==================== HEADER ====================-->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#" class="nav__logo"> Istiaq </a>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list grid">
+          <li class="nav__item">
+            <a href="#home" class="nav__link active-link">
+              <i class="ri-home-5-line"></i> Home
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#skills" class="nav__link">
+              <i class="ri-trophy-line"></i> Skills
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#qualification" class="nav__link">
+              <i class="ri-book-open-line"></i> Qualification
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#services" class="nav__link">
+              <i class="ri-briefcase-line"></i> Services
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#projects" class="nav__link">
+              <i class="ri-image-line"></i> Projects
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">
+              <i class="ri-chat-3-line"></i> Contact
+            </a>
+          </li>
+        </ul>
+        <!-- Close Button -->
+        <div class="nav__close" id="nav-close">
+          <i class="ri-close-line"></i>
         </div>
-        <div class="nav-list">
-          <div class="hamburger">
-            <div class="bar"></div>
+      </div>
+      <div class="nav__buttons">
+        <!-- Theme Change Button -->
+        <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+        <!-- Toggle Button -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-4-line"></i>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!--==================== MAIN ====================-->
+  <main class="main">
+    <!--==================== HOME ====================-->
+    <section class="home section" id="home">
+      <div class="home__container container grid section__border">
+        <div class="home__data grid">
+          <h1 class="home__title">
+            Hi, I'm Istiaq <br />
+            Software Engineer<br />
+            Based in Bangladesh <br />
+          </h1>
+
+          <div class="home__blob grid">
+            <div class="home__perfil">
+              <img src="assets/img/perfil.png" alt="home perfil" />
+            </div>
+
+            <img src="assets/img/shape-wawes.svg" alt="" class="home__shape-wawes" />
+            <img src="assets/img/shape-circle.svg" alt="" class="home__shape-circle" />
           </div>
-          <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
-            <li><a href="#services" data-after="Service">Services</a></li>
-            <li><a href="#projects" data-after="Projects">Projects</a></li>
-            <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
+          <ul class="home__social">
+            <a href="https://www.linkedin.com/" target="_blank" class="home__social-link">
+              <i class="ri-linkedin-box-line"></i>
+            </a>
+
+            <a href="https://github.com/" target="_blank" class="home__social-link">
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a href="https://dribbble.com/" target="_blank" class="home__social-link">
+              <i class="ri-dribbble-line"></i>
+            </a>
           </ul>
+          <div class="CV"><a href="./assets/Istiaq Ahmed CV.pdf" class="cta">Download Resume</a></div>
+        </div>
+
+        <!--==================== HOME INFO 1 ====================-->
+        <div class="home__info">
+          <div>
+            <h3 class="home__info-title">BIOGRAPHY</h3>
+
+            <p class="home__info-description">
+              I'm a versatile software engineer skilled in Android, Flutter, and PHP web
+              development.
+            </p>
+          </div>
+          <div>
+            <h3 class="home__info-title">CONTACT</h3>
+
+            <p class="home__info-description">
+              Chattogram, Bangladesh <br />
+              ahmedboby66@gmail.com <br />
+              +8801879237935
+            </p>
+          </div>
+          <div>
+            <h3 class="home__info-title">SERVICES</h3>
+
+            <p class="home__info-description">
+              Mobile App Development <br />
+              Web Developement <br />
+              UI/UX Design <br />
+            </p>
+          </div>
+        </div>
+        <!--==================== HOME INFO 2 ====================-->
+
+        <div class="home__info">
+          <div>
+            <h3 class="home__info-title">YEARS OF EXPERIENCE</h3>
+            <p class="home__info-number">02+</p>
+          </div>
+
+          <div>
+            <h3 class="home__info-title">COMPLETED PROJECTS</h3>
+            <p class="home__info-number">5+</p>
+          </div>
+
+          <div>
+            <h3 class="home__info-title">WORKED WITH COMPANIES</h3>
+            <p class="home__info-number">01</p>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!--==================== SKILLS ====================-->
+    <section class="skills section" id="skills">
+      <h2 class="section__title">Skills</h2>
+      <span class="section__subtitle"> My Favorite Skills </span>
+      <div class="skills__container container grid section__border">
+        <!--==================== SKILLS 1 ====================-->
+        <div class="skills__content">
+          <h3 class="skills__title">
+            <i class="ri-braces-line"></i>Frontend Developer
+          </h3>
+          <div class="skills__info">
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/html-1.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">HTML</h3>
+              <span class="skills__subtitle"> Intermediate </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/css-3.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">CSS</h3>
+              <span class="skills__subtitle"> Advanced </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/logo-javascript.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">JavaScript</h3>
+              <span class="skills__subtitle"> Intermediate </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/react-2.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">React</h3>
+              <span class="skills__subtitle"> Basic </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/git-icon.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">Git</h3>
+              <span class="skills__subtitle"> Intermediate </span>
+            </div>
+          </div>
+        </div>
+        <!--==================== SKILLS 2 ====================-->
+        <div class="skills__content">
+          <h3 class="skills__title">
+            <i class="ri-pantone-line"></i> Web Designer
+          </h3>
+          <div class="skills__info">
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/figma-1.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">Figma</h3>
+              <span class="skills__subtitle"> Advanced </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/sketch-2.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">Scetch</h3>
+              <span class="skills__subtitle"> Basic </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/adobe-xd-1.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">Adobe XD</h3>
+              <span class="skills__subtitle"> Intermediate </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/invision.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">InvisionApp</h3>
+              <span class="skills__subtitle"> Basic </span>
+            </div>
+
+            <div class="skills__data">
+              <div class="skills__blob">
+                <img src="assets/img/adobe-photoshop-2.svg" alt="skills image" />
+              </div>
+
+              <h3 class="skills__name">Adobe Photoshop</h3>
+              <span class="skills__subtitle"> Intermediate </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== QUALIFICATION ====================-->
+    <section class="qualification section" id="qualification">
+      <h2 class="section__title">Qualification</h2>
+      <span class="section__subtitle">Experience & education</span>
+      <div class="qualification__container container grid section__border">
+        <!--==================== QUALIFICATION 1 ====================-->
+        <div class="qualification__content">
+          <h3 class="qualification__title">
+            <i class="ri-pencil-ruler-2-line"></i> Education
+          </h3>
+          <div class="qualification__info">
+            <div>
+              <h3 class="qualification__name">Bachelor of Science in <br>Computer Science and Engineering</h3>
+              <span class="qualification__country">Bangladesh</span>
+              <span class="qualification__year">2019 - 2023</span>
+            </div>
+
+            <!-- <div>
+                            <h3 class="qualification__name">
+                                
+                            </h3>
+                            <span class="qualification__country"></span>
+                            <span class="qualification__year"></span>
+                        </div>
+
+                        <div>
+                            <h3 class="qualification__name">
+                                
+                            </h3>
+                            <span class="qualification__country"></span>
+                            <span class="qualification__year"></span>
+                        </div> -->
+          </div>
+        </div>
+        <!--==================== QUALIFICATION 2 ====================-->
+        <div class="qualification__content">
+          <h3 class="qualification__title">
+            <i class="ri-building-line"></i> Work
+          </h3>
+          <div class="qualification__info">
+            <div>
+              <h3 class="qualification__name">Jr Software Engineer (Intern)<br>Stamasoft Technologies</h3>
+              <span class="qualification__country">Stamasoft - Bangladesh</span>
+              <span class="qualification__year">2021 - 2022</span>
+            </div>
+
+            <!-- <div>
+                            <h3 class="qualification__name">
+                                
+                            </h3>
+                            <span class="qualification__country"></span>
+                            <span class="qualification__year"></span>
+                        </div>
+
+                        <div>
+                            <h3 class="qualification__name">
+                                
+                            </h3>
+                            <span class="qualification__country"></span>
+                            <span class="qualification__year"></span>
+                        </div> -->
+          </div>
+        </div>
+      </div>
+
+      <img src="assets/img/shape-circle.svg" alt="qualification image" class="qualification__img" />
+    </section>
+
+    <!--==================== SERVICES ====================-->
+    <section class="services section" id="services">
+      <h2 class="section__title">Services</h2>
+      <span class="section__subtitle">What I Offer!</span>
+
+      <div class="services__container container grid section__border">
+        <div class="services__card">
+          <i class="ri-layout-4-line"></i>
+
+          <h2 class="services__title">
+            UI/UX <br />
+            Design
+          </h2>
+          <p class="services__description">
+            Services that provides the best quality with professional work and
+            customer support.
+          </p>
+          <div class="services__border"></div>
+        </div>
+
+        <div class="services__card">
+          <i class="ri-code-line"></i>
+
+          <h2 class="services__title">
+            Website <br />
+            Design
+          </h2>
+          <p class="services__description">
+            Services that provides the best quality with professional work and
+            customer support.
+          </p>
+          <div class="services__border"></div>
+        </div>
+
+        <div class="services__card">
+          <i class="ri-quill-pen-line"></i>
+
+          <h2 class="services__title">
+            Digital <br />
+            Animation
+          </h2>
+          <p class="services__description">
+            Services that provides the best quality with professional work and
+            customer support.
+          </p>
+          <div class="services__border"></div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== PROJECTS ====================-->
+    <section class="projects section" id="projects">
+      <h2 class="section__title">Projects</h2>
+      <span class="section__subtitle">Most recent work</span>
+
+      <div class="container section__border">
+        <div class="projects__container swiper">
+          <div class="swiper-wrapper">
+            <!-- empty div for adding swiper -->
+
+            <!--==================== PROJECT 1 ====================-->
+            <div class="project__content swiper-slide">
+              <img src="assets/img/project1.jpg" alt="projects image" class="projects__img" />
+
+              <div>
+                <span class="projects__subtitle">Web</span>
+                <h1 class="projects__title">Modern Website</h1>
+
+                <a href="#" class="projects__button">
+                  View Demo <i class="ri-arrow-right-line"></i>
+                </a>
+              </div>
+            </div>
+
+            <!--==================== PROJECT 2 ====================-->
+            <div class="project__content swiper-slide">
+              <img src="assets/img/project2.jpg" alt="projects image" class="projects__img" />
+
+              <div>
+                <span class="projects__subtitle">Web</span>
+                <h1 class="projects__title">E-Commerce Store</h1>
+
+                <a href="#" class="projects__button">
+                  View Demo <i class="ri-arrow-right-line"></i>
+                </a>
+              </div>
+            </div>
+
+            <!--==================== PROJECT 3 ====================-->
+            <div class="project__content swiper-slide">
+              <img src="assets/img/project3.jpg" alt="projects image" class="projects__img" />
+
+              <div>
+                <span class="projects__subtitle">Design</span>
+                <h1 class="projects__title">Application Design</h1>
+
+                <a href="#" class="projects__button">
+                  View Demo <i class="ri-arrow-right-line"></i>
+                </a>
+              </div>
+            </div>
+
+            <!--==================== PROJECT 4 ====================-->
+            <div class="project__content swiper-slide">
+              <img src="assets/img/project4.jpg" alt="projects image" class="projects__img" />
+
+              <div>
+                <span class="projects__subtitle">Animation</span>
+                <h1 class="projects__title">Animation Prototypes</h1>
+
+                <a href="#" class="projects__button">
+                  View Demo <i class="ri-arrow-right-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Swiper Arrows -->
+          <div class="swiper-button-prev">
+            <i class="ri-arrow-left-s-line"></i>
+          </div>
+          <div class="swiper-button-next">
+            <i class="ri-arrow-right-s-line"></i>
+          </div>
+          <!-- Swiper Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== TESTIMONIAL ====================-->
+    <section class="testimonial section">
+      <h2 class="section__title">Testimonial</h2>
+      <span class="section__subtitle">My Clients Saying</span>
+
+      <div class="container section__border">
+        <div class="testimonial__container swiper">
+          <div class="swiper-wrapper">
+            <!--==================== TESTIMONIAL 1 ====================-->
+            <div class="testimonial__content swiper-slide">
+              <p class="testimonial__description">
+                Working with Ishaq gives a good impression, I carry out my
+                project with excelent quality and attention. Great service so
+                far and highly recommended.
+              </p>
+              <div>
+                <h3 class="testimonial__name">Klay Harris</h3>
+                <span class="testimonail__subtitle">Client</span>
+              </div>
+            </div>
+
+            <!--==================== TESTIMONIAL 2 ====================-->
+            <div class="testimonial__content swiper-slide">
+              <p class="testimonial__description">
+                Working with Ishaq gives a good impression, I carry out my
+                project with excelent quality and attention. Great service so
+                far and highly recommended.
+              </p>
+              <div>
+                <h3 class="testimonial__name">Marry Lense</h3>
+                <span class="testimonial__subtitle">Client</span>
+              </div>
+            </div>
+
+            <!--==================== TESTIMONIAL 3 ====================-->
+            <div class="testimonial__content swiper-slide">
+              <p class="testimonial__description">
+                Working with Ishaq gives a good impression, I carry out my
+                project with excelent quality and attention. Great service so
+                far and highly recommended.
+              </p>
+              <div>
+                <h3 class="testimonial__name">Anna Chel</h3>
+                <span class="testimonail__subtitle">Client</span>
+              </div>
+            </div>
+          </div>
+          <!-- Swiper arrows -->
+          <div class="swiper-button-next">
+            <i class="ri-arrow-right-s-line"></i>
+          </div>
+          <div class="swiper-button-prev">
+            <i class="ri-arrow-left-s-line"></i>
+          </div>
+        </div>
+      </div>
+
+      <img src="assets/img/shape-wawes.svg" alt="testimonial image" class="testimonial__img" />
+    </section>
+
+    <!--==================== CONTACT ====================-->
+    <section class="contact section" id="contact">
+      <h2 class="section__title">Contact Me</h2>
+      <span class="section__subtitle">Get In Touch</span>
+
+      <div class="contact__container container grid section__border">
+        <div class="contact__content">
+          <h3 class="contact__title">
+            <i class="ri-chat-3-line"></i> Talk To Me
+          </h3>
+
+          <div class="contact__info">
+            <div class="contact__data">
+              <span class="contact__data-title">Email</span>
+              <span class="contact__data-info">ahmedboby66@gmail.com</span>
+            </div>
+
+            <div class="contact__data">
+              <span class="contact__data-title">WhatsApp</span>
+              <span class="contact__data-info">+880 1879237935</span>
+              <a href="https://api.whatsapp.com/send?phone=8801879237935&text=Hello, more information!" target="_blank"
+                class="contact__button">
+                Write Me <i class="ri-arrow-right-s-line"></i>
+              </a>
+            </div>
+
+            <div class="contact__data">
+              <span class="contact__data-title">Messenger</span>
+              <span class="contact__data-info">ahmed.boby.752</span>
+              <a href="https://m.me/ahmed.boby.752" target="_blank" class="contact__button">
+                Write Me <i class="ri-arrow-right-s-line"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__content">
+          <h3 class="contact__title">
+            <i class="ri-send-plane-line"></i> Write me your project
+          </h3>
+
+          <form action="" class="contact__form" id="contact-form">
+            <div class="contact__form-div">
+              <label class="contact__form-tag">Names</label>
+              <input type="text" name="user_name" required placeholder="Write your name..." class="contact__form-input"
+                id="contact-name" />
+            </div>
+
+            <div class="contact__form-div">
+              <label class="contact__form-tag">Mail</label>
+              <input type="email" name="user_email" required placeholder="Write your email..."
+                class="contact__form-input" id="contact-email" />
+            </div>
+
+            <div class="contact__form-div contact__form-area">
+              <label class="contact__form-tag">Project</label>
+              <textarea name="user_project" placeholder="Write your project..." id="contact-project"
+                class="contact__form-input"></textarea>
+            </div>
+
+            <p class="contact__message" id="contact-message"></p>
+
+            <button type="submit" class="contact__button">
+              Submit <i class="ri-arrow-right-up-line"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--==================== FOOTER ====================-->
+  <footer class="footer">
+    <div class="footer__container container">
+      <h1 class="footer__title">Istiaq</h1>
+      <p>Software Engineer</p>
+      <ul class="footer__list">
+        <li>
+          <a href="#home" class="footer__link">Home</a>
+        </li>
+
+        <li>
+          <a href="#skills" class="footer__link">Skills</a>
+        </li>
+
+        <li>
+          <a href="#projects" class="footer__link">Projects</a>
+        </li>
+      </ul>
+
+      <ul class="footer__social">
+        <a href="https://www.linkedin.com/" target="_blank" class="footer__social-link">
+          <i class="ri-linkedin-box-line"></i>
+        </a>
+
+        <a href="https://github.com/" target="_blank" class="footer__social-link">
+          <i class="ri-github-line"></i>
+        </a>
+
+        <a href="https://dribbble.com/" target="_blank" class="footer__social-link">
+          <i class="ri-dribbble-line"></i>
+        </a>
+      </ul>
+      <span class="footer__copy">Copyright Istiaq Ahmed. All rights reserved</span>
     </div>
-  </section>
-  <!-- End Header -->
+  </footer>
 
+  <!--========== SCROLL UP ==========-->
 
-  <!-- Hero Section  -->
-  <section id="hero">
-    <div class="hero container">
-      <div>
-        <h1>Hello <span></span></h1>
-        <h1>My Name is <span></span></h1>
-        <h1>Istiaq Ahmed<span></span></h1>
-        <a href="#projects" type="button" class="cta">Portfolio</a>
-      </div>
-    </div>
-  </section>
-  <!-- End Hero Section  -->
+  <a href="" class="scrollup" id="scroll-up">
+    <i class="ri-arrow-up-line"></i>
+  </a>
 
-  <!-- Service Section -->
-  <section id="services">
-    <div class="services container">
-      <div class="service-top">
-        <h1 class="section-title">Serv<span>i</span>ces</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum deleniti maiores pariatur assumenda quas
-          magni et, doloribus quod voluptate quasi molestiae magnam officiis dolorum, dolor provident atque molestias
-          voluptatum explicabo!</p>
-      </div>
-      <div class="service-bottom">
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-        <div class="service-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
-          <h2>Web Design</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis debitis rerum, magni voluptatem sed
-            architecto placeat beatae tenetur officia quod</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Service Section -->
+  <!--=============== SCROLLREVEAL ===============-->
+  <script src="assets/js/scrollreveal.min.js"></script>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="projects container">
-      <div class="projects-header">
-        <h1 class="section-title">Recent <span>Projects</span></h1>
-      </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 1</h1>
-            <h2>Coding is Love</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 2</h1>
-            <h2>Coding is Love</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 3</h1>
-            <h2>Coding is Love</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 4</h1>
-            <h2>Coding is Love</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Project 5</h1>
-            <h2>Coding is Love</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Projects Section -->
+  <!--=============== SWIPER JS ===============-->
+  <script src="assets/js/swiper-bundle.min.js"></script>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="about container">
-      <div class="col-left">
-        <div class="about-img">
-          <img src="./img/img-2.jpg" alt="img">
-        </div>
-      </div>
-      <div class="col-right">
-        <h1 class="section-title">About <span>me</span></h1>
-        <h2>Mobile Aplication Developer</h2>
-        <p>Hey there!
-
-          I'm Istiaq Ahmed, a passionate and dedicated final-year Computer Science student at International Islamic
-          University Chittagong. With a diverse skill set encompassing Android app development, PHP web development,
-          problem-solving, and a growing interest in Flutter, I thrive on creating innovative solutions and contributing
-          to the world of technology.
-
-
-          During my internship at Stamasoft Technologies, I had the opportunity to work as an Android Developer, where I
-          honed my skills in building robust and user-friendly mobile applications. In addition to Android development,
-          I also had the chance to work on PHP-based websites. This experience allowed me to gain valuable insights into
-          web development principles, PHP programming, and database integration.
-
-
-          In my journey as a problem solver, I have engaged in challenging myself through various online judges. I have
-          successfully solved numerous problems, which have further strengthened my logical thinking, algorithmic
-          skills, and ability to devise efficient solutions.
-
-
-          Currently, I am expanding my horizons by delving into Flutter development. This versatile framework has
-          captured my interest, and I am eager to leverage its capabilities to build cross-platform applications. With a
-          penchant for learning and staying up-to-date with the latest industry trends, I am committed to enhancing my
-          knowledge and skills to deliver exceptional results.
-
-
-          If you are looking for a versatile developer with experience in Android, PHP web development, and a passion
-          for problem-solving, along with a growing interest in Flutter, I would love to connect with you. Let's explore
-          opportunities together and make a positive impact in the world of technology! 🚀</p>
-        <a href="Istiaq Ahmed CV.pdf" class="cta">Download Resume</a>
-      </div>
-    </div>
-  </section>
-  <!-- End About Section -->
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="contact container">
-      <div>
-        <h1 class="section-title">Contact <span>info</span></h1>
-      </div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
-          <div class="contact-info">
-            <h1>Phone</h1>
-            <h2>01879237935</h2>
-
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
-          <div class="contact-info">
-            <h1>Email</h1>
-            <h2>ahmedboby66@gmail.com</h2>
-
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
-          <div class="contact-info">
-            <h1>Address</h1>
-            <h2>Pahartali, Chittagong, Bangladesh</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Contact Section -->
-
-  <!-- Footer -->
-  <section id="footer">
-    <div class="footer container">
-      <div class="brand">
-        <h1><span>I</span>stiaq <span>A</span>hmed</h1>
-      </div>
-      <h2>Your Mobile app solution</h2>
-      <div class="social-icon">
-        <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
-        </div>
-        <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
-        </div>
-        <div class="social-item">
-          <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/behance.png" /></a>
-        </div>
-      </div>
-      <p>Copyright © 2023 Istiaq. All rights reserved</p>
-    </div>
-  </section>
-  <!-- End Footer -->
-  <script src="./app.js"></script>
+  <!--=============== EMAIL JS ===============-->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!--=============== MAIN JS ===============-->
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
