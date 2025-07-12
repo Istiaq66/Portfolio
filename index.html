@@ -26,22 +26,29 @@
             <a href="#" class="logo">IA</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#resume">Resume</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+        <div class="mobile-menu-links">
+            <a href="#home" onclick="toggleMobileMenu()">Home</a>
+            <a href="#resume" onclick="toggleMobileMenu()">Resume</a>
+            <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
+            <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="floating-elements">
-            <div class="floating-icon">📱</div>
-            <div class="floating-icon">💻</div>
-            <div class="floating-icon">🚀</div>
-            <div class="floating-icon">⚡</div>
-        </div>
-        
         <div class="hero-content">
             <div class="hero-text slide-in-left">
                 <div class="hero-subtitle">Flutter Developer</div>
@@ -78,6 +85,44 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section resume-section">
+        <div class="container">
+            <div class="resume-card fade-in">
+                <div class="resume-icon">📄</div>
+                <h2 class="resume-title">Download My Resume</h2>
+                <p class="resume-description">
+                    Get a comprehensive overview of my skills, experience, and achievements. 
+                    Perfect for recruiters and potential collaborators.
+                </p>
+                
+                <div class="resume-stats">
+                    <div class="resume-stat">
+                        <div class="resume-stat-number">2+</div>
+                        <div class="resume-stat-label">Years Exp</div>
+                    </div>
+                    <div class="resume-stat">
+                        <div class="resume-stat-number">10+</div>
+                        <div class="resume-stat-label">Projects</div>
+                    </div>
+                    <div class="resume-stat">
+                        <div class="resume-stat-number">5+</div>
+                        <div class="resume-stat-label">Technologies</div>
+                    </div>
+                    <div class="resume-stat">
+                        <div class="resume-stat-number">100%</div>
+                        <div class="resume-stat-label">Dedication</div>
+                    </div>
+                </div>
+                
+                <a href="#" class="resume-download-btn" onclick="downloadResume()">
+                    <span>📥</span>
+                    Download Resume
+                </a>
             </div>
         </div>
     </section>
@@ -147,7 +192,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Hadith Collection App</h3>
                         <p class="project-description">
-                            Currently working on Revolutionary Islamic app featuring 41,000+ authentic hadiths from 14 major collections. 
+                            Revolutionary Islamic app featuring 41,000+ authentic hadiths from 14 major collections. 
                             Advanced search, offline access, and multi-language support serving millions globally.
                         </p>
                         <div class="project-tech">
@@ -162,8 +207,6 @@
                         </div>
                     </div>
                 </div>
-
-             
 
                 <div class="project-card fade-in">
                     <div class="project-image">💪</div>
@@ -226,19 +269,19 @@
                         <div class="contact-method">
                             <div class="contact-method-icon">📧</div>
                             <div class="contact-method-info">
-                                <span class="contact-method-title">Email</span>
-                                <span class="contact-method-detail">ahmedboby66@gmail.com</span>
+                                <div class="contact-method-title">Email</div>
+                                <div class="contact-method-detail">ahmedboby66@gmail.com</div>
                             </div>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-method-icon">📱</div>
                             <div class="contact-method-info">
-                                <span class="contact-method-title">WhatsApp</span>
-                                <span class="contact-method-detail">+880 1879237935</span>
+                                <div class="contact-method-title">WhatsApp</div>
+                                <div class="contact-method-detail">+880 1879237935</div>
                                 <a href="https://api.whatsapp.com/send?phone=8801879237935&text=Hello, more information!" 
                                    target="_blank" class="contact-method-btn">
-                                    Write Me <span class="arrow">→</span>
+                                    Write Me →
                                 </a>
                             </div>
                         </div>
@@ -246,10 +289,10 @@
                         <div class="contact-method">
                             <div class="contact-method-icon">💬</div>
                             <div class="contact-method-info">
-                                <span class="contact-method-title">Messenger</span>
-                                <span class="contact-method-detail">ahmed.boby.752</span>
+                                <div class="contact-method-title">Messenger</div>
+                                <div class="contact-method-detail">ahmed.boby.752</div>
                                 <a href="https://m.me/ahmed.boby.752" target="_blank" class="contact-method-btn">
-                                    Write Me <span class="arrow">→</span>
+                                    Write Me →
                                 </a>
                             </div>
                         </div>
@@ -279,9 +322,7 @@
                                 required 
                                 placeholder="Enter your full name..." 
                                 class="form-input"
-                                id="contact-name"
                             />
-                            <div class="form-line"></div>
                         </div>
 
                         <div class="form-group">
@@ -292,9 +333,7 @@
                                 required 
                                 placeholder="Enter your email address..." 
                                 class="form-input"
-                                id="contact-email"
                             />
-                            <div class="form-line"></div>
                         </div>
 
                         <div class="form-group">
@@ -305,29 +344,21 @@
                                 required 
                                 placeholder="What's your project about..." 
                                 class="form-input"
-                                id="contact-subject"
                             />
-                            <div class="form-line"></div>
                         </div>
 
-                        <div class="form-group form-group-textarea">
+                        <div class="form-group">
                             <label class="form-label">Project Details</label>
                             <textarea 
                                 name="user_project" 
-                                placeholder="Tell me about your project, requirements, timeline, and budget..." 
-                                id="contact-project"
+                                placeholder="Tell me about your project..." 
                                 class="form-textarea"
-                                rows="6"
+                                rows="4"
                             ></textarea>
-                            <div class="form-line"></div>
                         </div>
 
-                        <div class="form-message" id="contact-message"></div>
-
                         <button type="submit" class="form-submit-btn">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-icon">🚀</span>
-                            <div class="btn-overlay"></div>
+                            Send Message 🚀
                         </button>
                     </form>
                 </div>
@@ -354,12 +385,11 @@
             </div>
         </div>
     </section>
-
-
   <!--=============== EMAIL JS ===============-->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <!--=============== MAIN JS ===============-->
   <script src="assets/js/main.js"></script>
-
 </body>
 </html>
+
+

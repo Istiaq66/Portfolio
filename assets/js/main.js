@@ -7,32 +7,42 @@
             }, 1500);
         });
 
-        // Custom Cursor
-        const cursor = document.getElementById('cursor');
-        const cursorFollower = document.getElementById('cursor-follower');
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+        }
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
+        // Custom Cursor (Desktop only)
+        if (window.innerWidth > 768) {
+            const cursor = document.getElementById('cursor');
+            const cursorFollower = document.getElementById('cursor-follower');
 
-        // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.style.transform = 'scale(1.5)';
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.display = 'block';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                    cursorFollower.style.display = 'block';
+                }, 100);
             });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.style.transform = 'scale(1)';
+
+            // Cursor hover effects
+            const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    cursor.style.background = '#10b981';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.background = '#ec4899';
+                });
             });
-        });
+        }
 
         // Particle System
         function createParticle() {
@@ -50,7 +60,7 @@
         }
 
         // Create particles periodically
-        setInterval(createParticle, 300);
+        setInterval(createParticle, 500);
 
         // Scroll Animations
         const observerOptions = {
@@ -97,171 +107,82 @@
             }
         });
 
-        // Add parallax effect to floating icons
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.floating-icon');
-            const speed = 0.5;
-
-            parallax.forEach((element, index) => {
-                const yPos = -(scrolled * speed * (index + 1) * 0.1);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-
-        // Add dynamic tech orb rotation
-        const techOrbs = document.querySelectorAll('.tech-orb');
-        techOrbs.forEach((orb, index) => {
-            orb.addEventListener('mouseenter', () => {
-                orb.style.transform = `scale(1.2) rotateY(180deg) rotateZ(${index * 90}deg)`;
-            });
-            orb.addEventListener('mouseleave', () => {
-                orb.style.transform = 'scale(1) rotateY(0deg) rotateZ(0deg)';
-            });
-        });
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function typing() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typing, speed);
-                }
-            }
-            typing();
+        // Resume Download Function
+        function downloadResume() {
+            const link = document.createElement('a');
+            link.href = 'assets/resume/Istiaq Ahmed.pdf'; // Path to your PDF
+            link.download = 'Istiaq_Ahmed_Resume.pdf';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            alert('Resume downloaded successfully! 📄✨');
         }
 
-        // Initialize typing effect when page loads
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const heroTitle = document.querySelector('.hero-text h1');
-                if (heroTitle) {
-                    typeWriter(heroTitle, 'Istiaq\nAhmed', 150);
-                }
-            }, 2000);
-        });
-
-        // Contact Form Functionality
-        const contactForm = document.getElementById('contact-form');
-        const contactMessage = document.getElementById('contact-message');
-        const submitBtn = document.querySelector('.form-submit-btn');
-
-        // Form submission handler
-        contactForm.addEventListener('submit', async function(e) {
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form data
-            const formData = new FormData(contactForm);
+            const formData = new FormData(this);
             const name = formData.get('user_name');
             const email = formData.get('user_email');
             const subject = formData.get('user_subject');
             const project = formData.get('user_project');
             
-            // Validate form
-            if (!name || !email || !subject || !project) {
-                showMessage('Please fill in all fields! 📝', 'error');
+            // Simple validation
+            if (!name || !email || !subject) {
+                alert('Please fill in all required fields!');
                 return;
             }
             
-            // Show loading state
-            submitBtn.innerHTML = `
-                <span class="btn-text">Sending...</span>
-                <span class="btn-icon">⏳</span>
-                <div class="btn-overlay"></div>
-            `;
-            submitBtn.disabled = true;
-            
-            try {
-                // Simulate API call (replace with your actual EmailJS code)
-                await simulateEmailSend(formData);
-                
-                // Success
-                showMessage('Message sent successfully! 🎉 I\'ll get back to you soon.', 'success');
-                contactForm.reset();
-                
-                // Reset button
-                submitBtn.innerHTML = `
-                    <span class="btn-text">Message Sent!</span>
-                    <span class="btn-icon">✅</span>
-                    <div class="btn-overlay"></div>
-                `;
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = `
-                        <span class="btn-text">Send Message</span>
-                        <span class="btn-icon">🚀</span>
-                        <div class="btn-overlay"></div>
-                    `;
-                    submitBtn.disabled = false;
-                }, 3000);
-                
-            } catch (error) {
-                showMessage('Oops! Something went wrong. Please try again. 😞', 'error');
-                
-                // Reset button
-                submitBtn.innerHTML = `
-                    <span class="btn-text">Send Message</span>
-                    <span class="btn-icon">🚀</span>
-                    <div class="btn-overlay"></div>
-                `;
-                submitBtn.disabled = false;
-            }
+            // Simulate form submission
+            alert('Thank you for your message! I\'ll get back to you soon. 🚀');
+            this.reset();
         });
 
-        // Show message function
-        function showMessage(message, type) {
-            contactMessage.textContent = message;
-            contactMessage.className = `form-message ${type}`;
-            
-            setTimeout(() => {
-                contactMessage.className = 'form-message';
-            }, 5000);
-        }
-
-        // Simulate email sending (replace with actual EmailJS implementation)
-        function simulateEmailSend(formData) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // 90% success rate for demo
-                    if (Math.random() > 0.1) {
-                        resolve();
-                    } else {
-                        reject(new Error('Network error'));
-                    }
-                }, 2000);
+        // Add some interactive effects
+        document.querySelectorAll('.skill-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
             });
-        }
-
-        // Add EmailJS integration
-        // To use EmailJS, uncomment and configure the following:
-        /*
-        // Initialize EmailJS
-        emailjs.init("YOUR_USER_ID");
-
-        // Replace the simulateEmailSend function with this:
-        function sendEmailWithEmailJS(formData) {
-            return emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-                user_name: formData.get('user_name'),
-                user_email: formData.get('user_email'),
-                user_subject: formData.get('user_subject'),
-                user_project: formData.get('user_project')
-            });
-        }
-        */
-
-        // Enhanced form animations
-        const formInputs = document.querySelectorAll('.form-input, .form-textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
-                this.parentElement.style.boxShadow = '0 10px 20px rgba(6, 182, 212, 0.1)';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
-                this.parentElement.style.boxShadow = 'none';
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const finalValue = stat.textContent;
+                        const numValue = parseInt(finalValue);
+                        if (!isNaN(numValue)) {
+                            animateCounter(stat, 0, numValue, 1500);
+                        }
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.contact-stats').forEach(stats => {
+            statsObserver.observe(stats);
+        });
+
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
