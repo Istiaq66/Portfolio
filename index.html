@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Istiaq Ahmed - Flutter Developer & Software Engineer</title>
-      <!--=============== CSS ===============-->
-  <link rel="stylesheet" href="assets/css/styles.css" />
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading" id="loading">
@@ -26,7 +28,7 @@
             <a href="#" class="logo">IA</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#resume">Resume</a></li>
+                <li><a href="#timeline">Career</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -40,7 +42,7 @@
         <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
         <div class="mobile-menu-links">
             <a href="#home" onclick="toggleMobileMenu()">Home</a>
-            <a href="#resume" onclick="toggleMobileMenu()">Resume</a>
+            <a href="#timeline" onclick="toggleMobileMenu()">Career</a>
             <a href="#skills" onclick="toggleMobileMenu()">Skills</a>
             <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
             <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
@@ -52,12 +54,26 @@
         <div class="hero-content">
             <div class="hero-text slide-in-left">
                 <div class="hero-subtitle">Flutter Developer</div>
-                <h1>Istiaq<br/>Ahmed</h1>
+                <h1>Istiaq<br />Ahmed</h1>
                 <p class="hero-description">
-                    Crafting exceptional mobile experiences at Greentech Apps Foundation. 
-                    Specialized in Flutter development and meaningful Islamic applications 
+                    Crafting exceptional mobile experiences at Greentech Apps Foundation.
+                    Specialized in Flutter development and meaningful Islamic applications
                     that serve millions worldwide.
                 </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">2+</div>
+                        <div class="hero-stat-label">Years Experience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">3</div>
+                        <div class="hero-stat-label">Companies</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">10+</div>
+                        <div class="hero-stat-label">Projects</div>
+                    </div>
+                </div>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">
                         Explore Projects ✨
@@ -67,7 +83,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="hero-visual slide-in-right">
                 <div class="profile-3d">
                     <div class="profile-card">
@@ -89,40 +105,142 @@
         </div>
     </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="section resume-section">
+    <!-- Career Timeline Section -->
+    <section id="timeline" class="section timeline-section">
         <div class="container">
-            <div class="resume-card fade-in">
-                <div class="resume-icon">📄</div>
-                <h2 class="resume-title">Download My Resume</h2>
-                <p class="resume-description">
-                    Get a comprehensive overview of my skills, experience, and achievements. 
-                    Perfect for recruiters and potential collaborators.
-                </p>
-                
-                <div class="resume-stats">
-                    <div class="resume-stat">
-                        <div class="resume-stat-number">2+</div>
-                        <div class="resume-stat-label">Years Exp</div>
+            <h2 class="section-title fade-in">Career Journey</h2>
+            <p class="timeline-subtitle fade-in">From internship to full-time software engineer - Alhamdulillah for the
+                growth journey</p>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <!-- Current Position -->
+                <div class="timeline-item fade-in current">
+                    <div class="timeline-marker current-marker">
+                        <div class="timeline-marker-icon">🚀</div>
                     </div>
-                    <div class="resume-stat">
-                        <div class="resume-stat-number">10+</div>
-                        <div class="resume-stat-label">Projects</div>
-                    </div>
-                    <div class="resume-stat">
-                        <div class="resume-stat-number">5+</div>
-                        <div class="resume-stat-label">Technologies</div>
-                    </div>
-                    <div class="resume-stat">
-                        <div class="resume-stat-number">100%</div>
-                        <div class="resume-stat-label">Dedication</div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 2024 - Present</div>
+                        <h3 class="timeline-title">Software Engineer</h3>
+                        <div class="timeline-company">
+                            <span class="company-name">Greentech Apps Foundation</span>
+                            <span class="company-location">Cambridge, England, UK • Remote</span>
+                            <span class="employment-type">Full-time</span>
+                        </div>
+                        <p class="timeline-description">
+                            Alhamdulillah, joined GTAF as a Software Engineer contributing to impactful Islamic
+                            applications
+                            that serve millions worldwide. Developing meaningful projects that bring people closer to
+                            Allah
+                            and serve the Ummah globally.
+                        </p>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">Agile Methodologies</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">Islamic Apps</span>
+                            <span class="skill-tag">Team Leadership</span>
+                        </div>
                     </div>
                 </div>
-                
-                <a href="#" class="resume-download-btn" onclick="downloadResume()">
-                    <span>📥</span>
-                    Download Resume
-                </a>
+
+                <!-- Previous Position -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">
+                        <div class="timeline-marker-icon">💻</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 2024 - Nov 2024</div>
+                        <h3 class="timeline-title">Junior Software Engineer</h3>
+                        <div class="timeline-company">
+                            <span class="company-name">6amTech</span>
+                            <span class="company-location">Dhaka, Bangladesh • On-site</span>
+                            <span class="employment-type">Full-time</span>
+                        </div>
+                        <p class="timeline-description">
+                            Promoted to Junior Software Engineer! Crafted code, embraced challenges, and learned
+                            alongside
+                            an innovative team. Contributed to inspiring projects while pushing boundaries in
+                            technology.
+                        </p>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">Dart</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">Mobile Development</span>
+                            <span class="skill-tag">Team Collaboration</span>
+                            <span class="skill-tag">Code Review</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Software Architecture</span>
+                            <span class="skill-tag">Testing</span>
+                            <span class="skill-tag">Debugging</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internship -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker">
+                        <div class="timeline-marker-icon">🌱</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 2023 - Mar 2024</div>
+                        <h3 class="timeline-title">Software Engineer Intern</h3>
+                        <div class="timeline-company">
+                            <span class="company-name">6amTech</span>
+                            <span class="company-location">Dhaka, Bangladesh • On-site</span>
+                            <span class="employment-type">Internship</span>
+                        </div>
+                        <p class="timeline-description">
+                            Started the exciting journey as a Flutter Developer Intern. Learned fundamentals,
+                            embraced new challenges in technology, and built foundation for mobile development career.
+                        </p>
+                        <div class="timeline-skills">
+                            <span class="skill-tag">Dart</span>
+                            <span class="skill-tag">Software Development</span>
+                            <span class="skill-tag">Flutter Basics</span>
+                            <span class="skill-tag">Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Career Stats -->
+            <div class="career-stats fade-in">
+                <div class="career-stat-item">
+                    <div class="career-stat-icon">⏱️</div>
+                    <div class="career-stat-number">2+</div>
+                    <div class="career-stat-label">Years Experience</div>
+                </div>
+                <div class="career-stat-item">
+                    <div class="career-stat-icon">🏢</div>
+                    <div class="career-stat-number">3</div>
+                    <div class="career-stat-label">Companies</div>
+                </div>
+                <div class="career-stat-item">
+                    <div class="career-stat-icon">📈</div>
+                    <div class="career-stat-number">2</div>
+                    <div class="career-stat-label">Promotions</div>
+                </div>
+                <div class="career-stat-item">
+                    <div class="career-stat-icon">🚀</div>
+                    <div class="career-stat-number">100%</div>
+                    <div class="career-stat-label">Growth Rate</div>
+                </div>
+            </div>
+
+            <!-- Download Resume -->
+            <div class="resume-download-section fade-in">
+                <div class="resume-card-mini">
+                    <div class="resume-icon-mini">📄</div>
+                    <div class="resume-info">
+                        <h3>Download My Resume</h3>
+                        <p>Get detailed information about my experience, skills, and achievements</p>
+                    </div>
+                    <a href="#" class="resume-download-btn-mini" onclick="downloadResume()">
+                        <span>📥</span>
+                        Download
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -192,7 +310,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Hadith Collection App</h3>
                         <p class="project-description">
-                            Revolutionary Islamic app featuring 41,000+ authentic hadiths from 14 major collections. 
+                            Revolutionary Islamic app featuring 41,000+ authentic hadiths from 14 major collections.
                             Advanced search, offline access, and multi-language support serving millions globally.
                         </p>
                         <div class="project-tech">
@@ -213,7 +331,7 @@
                     <div class="project-content">
                         <h3 class="project-title">AI-Powered FitnessPal</h3>
                         <p class="project-description">
-                            Intelligent fitness companion with AI-driven recommendations, step tracking, 
+                            Intelligent fitness companion with AI-driven recommendations, step tracking,
                             workout management, and personalized diet plans using Gemini API.
                         </p>
                         <div class="project-tech">
@@ -234,7 +352,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Weather App with BLoC</h3>
                         <p class="project-description">
-                            Stunning weather application showcasing BLoC architecture patterns, 
+                            Stunning weather application showcasing BLoC architecture patterns,
                             real-time data, beautiful animations, and intuitive user experience.
                         </p>
                         <div class="project-tech">
@@ -264,7 +382,7 @@
                         <span class="contact-icon-header">💬</span>
                         Talk To Me
                     </h3>
-                    
+
                     <div class="contact-methods">
                         <div class="contact-method">
                             <div class="contact-method-icon">📧</div>
@@ -273,19 +391,19 @@
                                 <div class="contact-method-detail">ahmedboby66@gmail.com</div>
                             </div>
                         </div>
-                        
+
                         <div class="contact-method">
                             <div class="contact-method-icon">📱</div>
                             <div class="contact-method-info">
                                 <div class="contact-method-title">WhatsApp</div>
                                 <div class="contact-method-detail">+880 1879237935</div>
-                                <a href="https://api.whatsapp.com/send?phone=8801879237935&text=Hello, more information!" 
-                                   target="_blank" class="contact-method-btn">
+                                <a href="https://api.whatsapp.com/send?phone=8801879237935&text=Hello, more information!"
+                                    target="_blank" class="contact-method-btn">
                                     Write Me →
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="contact-method">
                             <div class="contact-method-icon">💬</div>
                             <div class="contact-method-info">
@@ -300,61 +418,43 @@
 
                     <div class="social-links">
                         <a href="https://github.com/Istiaq66" target="_blank" class="social-link">💻</a>
-                        <a href="https://linkedin.com/in/istiaq-ahmed" target="_blank" class="social-link">💼</a>
+                        <a href="https://www.linkedin.com/in/istiaq-ahmed-7772641a9" target="_blank"
+                            class="social-link">💼</a>
                         <a href="mailto:ahmedboby66@gmail.com" class="social-link">📧</a>
                         <a href="tel:+8801879237935" class="social-link">📱</a>
                     </div>
                 </div>
-                
+
                 <!-- Contact Form -->
                 <div class="contact-form-section fade-in slide-in-right">
                     <h3 class="contact-section-title">
                         <span class="contact-icon-header">✉️</span>
                         Write Me Your Project
                     </h3>
-                    
+
                     <form class="contact-form" id="contact-form">
                         <div class="form-group">
                             <label class="form-label">Full Name</label>
-                            <input 
-                                type="text" 
-                                name="user_name" 
-                                required 
-                                placeholder="Enter your full name..." 
-                                class="form-input"
-                            />
+                            <input type="text" name="user_name" required placeholder="Enter your full name..."
+                                class="form-input" />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Email Address</label>
-                            <input 
-                                type="email" 
-                                name="user_email" 
-                                required 
-                                placeholder="Enter your email address..." 
-                                class="form-input"
-                            />
+                            <input type="email" name="user_email" required placeholder="Enter your email address..."
+                                class="form-input" />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Project Subject</label>
-                            <input 
-                                type="text" 
-                                name="user_subject" 
-                                required 
-                                placeholder="What's your project about..." 
-                                class="form-input"
-                            />
+                            <input type="text" name="user_subject" required placeholder="What's your project about..."
+                                class="form-input" />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Project Details</label>
-                            <textarea 
-                                name="user_project" 
-                                placeholder="Tell me about your project..." 
-                                class="form-textarea"
-                                rows="4"
-                            ></textarea>
+                            <textarea name="user_project" placeholder="Tell me about your project..."
+                                class="form-textarea" rows="4"></textarea>
                         </div>
 
                         <button type="submit" class="form-submit-btn">
@@ -363,33 +463,12 @@
                     </form>
                 </div>
             </div>
-            
-            <!-- Stats Section -->
-            <div class="contact-stats fade-in">
-                <div class="stat-item">
-                    <div class="stat-number">2+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Projects Delivered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Companies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Client Satisfaction</div>
-                </div>
-            </div>
         </div>
     </section>
-  <!--=============== EMAIL JS ===============-->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <!--=============== MAIN JS ===============-->
-  <script src="assets/js/main.js"></script>
+    <!--=============== EMAIL JS ===============-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js"></script>
 </body>
+
 </html>
-
-
