@@ -160,25 +160,41 @@ function showNotification(message, type = 'info') {
 }
 
 // Contact Form Submission
-document.getElementById('contact-form').addEventListener('submit', function (e) {
+
+(function loadEmailJS() {
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js";
+    script.onload = () => {
+        // Initialize EmailJS after SDK is loaded
+        emailjs.init("esldnNNnjd2oMImcZ");
+        console.log("EmailJS loaded and initialized");
+    };
+    script.onerror = () => {
+        console.error("Failed to load EmailJS SDK");
+    };
+    document.head.appendChild(script);
+})();
+
+
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     // Get form data
     const formData = new FormData(this);
     const name = formData.get('user_name');
-    const email = formData.get('user_email');
+    const userEmail = formData.get('user_email');
     const subject = formData.get('user_subject');
     const project = formData.get('user_project');
 
     // Simple validation
-    if (!name || !email || !subject) {
+    if (!name || !userEmail || !subject) {
         showNotification('Please fill in all required fields!', 'error');
         return;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(userEmail)) {
         showNotification('Please enter a valid email address!', 'error');
         return;
     }
@@ -189,13 +205,21 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
     submitBtn.textContent = 'Sending... 📤';
     submitBtn.disabled = true;
 
-    // Simulate form submission (replace with actual email service integration)
-    setTimeout(() => {
+    try {
+        // ✅ Send email using EmailJS
+        await emailjs.sendForm('service_zuc9me4', 'template_cpjtf1i', this);
+
+        // Success message
         showNotification('Thank you for your message! I\'ll get back to you soon. 🚀', 'success');
         this.reset();
+    } catch (error) {
+        console.error('EmailJS Error:', error);
+        showNotification('Oops! Something went wrong. Please try again later. 😞', 'error');
+    } finally {
+        // Reset button state
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 2000);
+    }
 });
 
 // Enhanced Interactive Effects
