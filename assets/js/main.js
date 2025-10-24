@@ -425,14 +425,21 @@ function applyThemeTransition() {
 // Enhanced error handling for resume download
 function downloadResume() {
     try {
-        // You should replace this with your actual resume file path
-        const resumeUrl = '  https://drive.google.com/file/d/1v1EAaGLf0Gl0Q3gFQUjRSp3AoTrB1evx/view?usp=sharing';
-        window.open(resumeUrl, '_blank');
+        // Path to your local resume file in the public folder
+        const resumeUrl = 'assets/resume/Istiaq Ahmed.pdf';
 
-        // Show success message with modern styling
+        // Create a temporary invisible link element
+        const link = document.createElement('a');
+        link.href = resumeUrl;
+        link.download = 'Istiaq_Ahmed_Resume.pdf'; // Suggests filename for download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Show success message
         showNotification('Resume download started! 📄✨', 'success');
 
-        // Analytics tracking (replace with your analytics service)
+        // Optional: Analytics event
         if (typeof gtag !== 'undefined') {
             gtag('event', 'download', {
                 'event_category': 'Resume',
@@ -445,6 +452,7 @@ function downloadResume() {
         showNotification('Sorry, resume download failed. Please try again later.', 'error');
     }
 }
+
 
 // Add contact form validation feedback
 document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
