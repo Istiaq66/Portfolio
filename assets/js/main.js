@@ -425,9 +425,14 @@ function applyThemeTransition() {
 // Enhanced error handling for resume download
 function downloadResume() {
     try {
-        // You should replace this with your actual resume file path
-        const resumeUrl = 'https://drive.google.com/file/d/1cpp6ymN4pSSXkPFINLHf3459m_zWPFye/view?usp=sharing';
-        window.open(resumeUrl, '_blank');
+        // Local resume file
+        const resumeUrl = 'assets/resume/Istiaq_Ahmed_Resume.pdf';
+        const link = document.createElement('a');
+        link.href = resumeUrl;
+        link.download = 'Istiaq_Ahmed_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
 
         // Show success message
         showNotification('Resume download started! 📄✨', 'success');
