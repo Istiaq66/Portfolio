@@ -426,7 +426,7 @@ function applyThemeTransition() {
 function downloadResume() {
     try {
         // You should replace this with your actual resume file path
-        const resumeUrl = '  https://drive.google.com/file/d/1v1EAaGLf0Gl0Q3gFQUjRSp3AoTrB1evx/view?usp=sharing';
+        const resumeUrl = 'https://drive.google.com/file/d/1cpp6ymN4pSSXkPFINLHf3459m_zWPFye/view?usp=sharing';
         window.open(resumeUrl, '_blank');
 
         // Show success message with modern styling
