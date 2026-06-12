@@ -429,10 +429,10 @@ function downloadResume() {
         const resumeUrl = 'https://drive.google.com/file/d/1cpp6ymN4pSSXkPFINLHf3459m_zWPFye/view?usp=sharing';
         window.open(resumeUrl, '_blank');
 
-        // Show success message with modern styling
+        // Show success message
         showNotification('Resume download started! 📄✨', 'success');
 
-        // Analytics tracking (replace with your analytics service)
+        // Optional: Analytics event
         if (typeof gtag !== 'undefined') {
             gtag('event', 'download', {
                 'event_category': 'Resume',
@@ -445,6 +445,7 @@ function downloadResume() {
         showNotification('Sorry, resume download failed. Please try again later.', 'error');
     }
 }
+
 
 // Add contact form validation feedback
 document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
