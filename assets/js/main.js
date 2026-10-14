@@ -1,33 +1,45 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
 // Loading Screen
-window.addEventListener('load', () => {
-    const loading = document.getElementById('loading');
-    setTimeout(() => {
-        loading.classList.add('hidden');
-    }, 1500);
-});
+function hideLoading() {
+    document.getElementById('loading').classList.add('hidden');
+}
+window.addEventListener('load', () => setTimeout(hideLoading, 300));
+// Safety net: never keep visitors waiting on a slow third-party resource
+setTimeout(hideLoading, 4000);
 
 // Mobile Menu Toggle
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('active');
+    const isOpen = mobileMenu.classList.toggle('active');
+    document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('no-scroll', isOpen);
 }
 
-// Custom Cursor (Desktop only)
-if (window.innerWidth > 768) {
+// Custom Cursor (mouse/trackpad devices only)
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursor-follower');
+    let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
 
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
         cursor.style.display = 'block';
-
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-            cursorFollower.style.display = 'block';
-        }, 100);
+        cursorFollower.style.display = 'block';
     });
+
+    // Follower eases towards the pointer
+    (function followCursor() {
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        requestAnimationFrame(followCursor);
+    })();
 
     // Cursor hover effects
     const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card, .timeline-content, .career-stat-item');
@@ -37,55 +49,61 @@ if (window.innerWidth > 768) {
             cursor.style.background = '#10b981';
         });
         el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursor.style.background = '#ec4899';
+            cursor.style.transform = '';
+            cursor.style.background = '';
         });
     });
 }
 
 // Particle System
+const MAX_PARTICLES = isMobile ? 15 : 40;
+
 function createParticle() {
+    const container = document.getElementById('particles');
+    if (document.hidden || container.childElementCount >= MAX_PARTICLES) return;
+
     const particle = document.createElement('div');
     particle.className = 'particle';
     particle.style.left = Math.random() * window.innerWidth + 'px';
-    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-    particle.style.animationDelay = Math.random() * 2 + 's';
+    particle.style.animationDuration = (Math.random() * 15 + 8) + 's';
+    particle.style.animationDelay = Math.random() * 5 + 's';
 
-    document.getElementById('particles').appendChild(particle);
+    // Random particle colors
+    const colors = ['#06b6d4', '#6366f1', '#8b5cf6', '#10b981'];
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
 
-    setTimeout(() => {
-        particle.remove();
-    }, 20000);
+    container.appendChild(particle);
+
+    setTimeout(() => particle.remove(), 25000);
 }
 
-// Create particles periodically
-setInterval(createParticle, 500);
+if (!prefersReducedMotion) {
+    setInterval(createParticle, isMobile ? 1200 : 700);
+}
 
 // Scroll Animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
 
             // Special animations for timeline items
-            if (entry.target.classList.contains('timeline-item')) {
+            if (entry.target.classList.contains('timeline-item') && !prefersReducedMotion) {
                 setTimeout(() => {
                     entry.target.style.transform = 'scale(1.02)';
                     setTimeout(() => {
-                        entry.target.style.transform = 'scale(1)';
+                        entry.target.style.transform = '';
                     }, 300);
                 }, 200);
             }
         }
     });
-}, observerOptions);
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
 
-// Observe all animation elements
 document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
     observer.observe(el);
 });
@@ -93,54 +111,82 @@ document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(e
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = href.length > 1 && document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
-                behavior: 'smooth',
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
                 block: 'start'
             });
         }
     });
 });
 
-// Enhanced Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 100) {
-        nav.style.background = 'rgba(0, 0, 0, 0.9)';
-        nav.style.backdropFilter = 'blur(30px)';
-        nav.style.transform = 'translateX(-50%) scale(0.95)';
-    } else {
-        nav.style.background = 'rgba(255, 255, 255, 0.1)';
-        nav.style.backdropFilter = 'blur(20px)';
-        nav.style.transform = 'translateX(-50%) scale(1)';
+// Navbar scroll effect + hero parallax
+const nav = document.querySelector('nav');
+const heroSection = document.querySelector('.hero');
+let ticking = false;
+
+function updateOnScroll() {
+    const scrolled = window.scrollY;
+    nav.classList.toggle('scrolled', scrolled > 100);
+
+    if (!prefersReducedMotion && scrolled < window.innerHeight) {
+        heroSection.style.transform = `translateY(${scrolled * 0.1}px)`;
     }
-});
 
-// Resume Download Function
+    ticking = false;
+}
 
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
+    }
+}, { passive: true });
+
+// Highlight the nav link of the section in view
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+        }
+    });
+}, { rootMargin: '-45% 0px -50% 0px' });
+
+document.querySelectorAll('section[id]').forEach(section => sectionObserver.observe(section));
 
 // Modern notification system
 function showNotification(message, type = 'info') {
+    const backgrounds = {
+        success: 'linear-gradient(45deg, #10b981, #06b6d4)',
+        error: 'linear-gradient(45deg, #ef4444, #f97316)',
+        info: 'linear-gradient(45deg, #6366f1, #8b5cf6)'
+    };
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    notification.setAttribute('role', type === 'error' ? 'alert' : 'status');
     notification.textContent = message;
 
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
+        left: auto;
+        max-width: calc(100vw - 40px);
         padding: 1rem 1.5rem;
-        background: ${type === 'success' ? 'linear-gradient(45deg, #10b981, #06b6d4)' : 'linear-gradient(45deg, #6366f1, #8b5cf6)'};
+        background: ${backgrounds[type] || backgrounds.info};
         color: white;
         border-radius: 10px;
         font-weight: 600;
-        z-index: 10000;
-        transform: translateX(100%);
+        z-index: 10002;
+        transform: translateX(calc(100% + 40px));
         transition: all 0.3s ease;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(20px);
     `;
 
     document.body.appendChild(notification);
@@ -152,10 +198,8 @@ function showNotification(message, type = 'info') {
 
     // Remove after 3 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
+        notification.style.transform = 'translateX(calc(100% + 40px))';
+        setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
@@ -167,7 +211,6 @@ function showNotification(message, type = 'info') {
     script.onload = () => {
         // Initialize EmailJS after SDK is loaded
         emailjs.init("esldnNNnjd2oMImcZ");
-        console.log("EmailJS loaded and initialized");
     };
     script.onerror = () => {
         console.error("Failed to load EmailJS SDK");
@@ -184,7 +227,6 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     const name = formData.get('user_name');
     const userEmail = formData.get('user_email');
     const subject = formData.get('user_subject');
-    const project = formData.get('user_project');
 
     // Simple validation
     if (!name || !userEmail || !subject) {
@@ -196,6 +238,11 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(userEmail)) {
         showNotification('Please enter a valid email address!', 'error');
+        return;
+    }
+
+    if (typeof emailjs === 'undefined') {
+        showNotification('Email service is still loading. Please try again in a moment.', 'error');
         return;
     }
 
@@ -212,6 +259,9 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         // Success message
         showNotification('Thank you for your message! I\'ll get back to you soon. 🚀', 'success');
         this.reset();
+        this.querySelectorAll('.form-input, .form-textarea').forEach(field => {
+            field.style.borderColor = '';
+        });
     } catch (error) {
         console.error('EmailJS Error:', error);
         showNotification('Oops! Something went wrong. Please try again later. 😞', 'error');
@@ -220,18 +270,6 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
-});
-
-// Enhanced Interactive Effects
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-15px) scale(1.02)';
-        card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.3)';
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-        card.style.boxShadow = '';
-    });
 });
 
 // Timeline Interactive Effects
@@ -254,26 +292,11 @@ document.querySelectorAll('.timeline-item').forEach(item => {
         const marker = item.querySelector('.timeline-marker');
 
         if (!item.classList.contains('current')) {
-            marker.style.transform = 'scale(1)';
+            marker.style.transform = '';
             marker.style.boxShadow = '';
         }
 
         content.style.boxShadow = '';
-    });
-});
-
-// Project Cards Enhanced Effects
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        const projectImage = card.querySelector('.project-image');
-        projectImage.style.transform = 'scale(1.05)';
-        projectImage.style.filter = 'brightness(1.1)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        const projectImage = card.querySelector('.project-image');
-        projectImage.style.transform = 'scale(1)';
-        projectImage.style.filter = 'brightness(1)';
     });
 });
 
@@ -290,7 +313,7 @@ const statsObserver = new IntersectionObserver((entries) => {
 
                 if (!isNaN(numValue) && !stat.dataset.animated) {
                     stat.dataset.animated = 'true';
-                    animateCounter(stat, 0, numValue, 1500, hasPlus, hasPercent);
+                    animateCounter(stat, 0, numValue, prefersReducedMotion ? 0 : 1500, hasPlus, hasPercent);
                 }
             });
         }
@@ -305,7 +328,7 @@ function animateCounter(element, start, end, duration, hasPlus = false, hasPerce
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const progress = duration ? Math.min((timestamp - startTimestamp) / duration, 1) : 1;
 
         // Easing function for smoother animation
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
@@ -324,8 +347,79 @@ function animateCounter(element, start, end, duration, hasPlus = false, hasPerce
     window.requestAnimationFrame(step);
 }
 
+// Screenshot Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('.lightbox-img');
+const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+let gallery = [];
+let galleryIndex = 0;
+let lastFocused = null;
+
+function showSlide(index) {
+    galleryIndex = (index + gallery.length) % gallery.length;
+    const shot = gallery[galleryIndex];
+    lightboxImg.src = shot.dataset.full || shot.src;
+    lightboxImg.alt = shot.alt;
+    lightboxCaption.textContent = `${shot.alt} (${galleryIndex + 1}/${gallery.length})`;
+}
+
+function openLightbox(images, index = 0) {
+    gallery = images;
+    lastFocused = document.activeElement;
+    showSlide(index);
+    lightbox.hidden = false;
+    lightbox.querySelectorAll('.lightbox-nav').forEach(btn => {
+        btn.style.visibility = gallery.length > 1 ? 'visible' : 'hidden';
+    });
+    requestAnimationFrame(() => lightbox.classList.add('open'));
+    document.body.classList.add('no-scroll');
+    lightbox.querySelector('.lightbox-close').focus();
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+    setTimeout(() => {
+        lightbox.hidden = true;
+    }, 250);
+    if (lastFocused) lastFocused.focus();
+}
+
+document.querySelectorAll('.project-shots').forEach(shots => {
+    shots.addEventListener('click', (e) => {
+        const images = [...shots.querySelectorAll('img')];
+        const clicked = images.indexOf(e.target);
+        openLightbox(images, clicked > -1 ? clicked : 0);
+    });
+});
+
+lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+lightbox.querySelector('.lightbox-prev').addEventListener('click', () => showSlide(galleryIndex - 1));
+lightbox.querySelector('.lightbox-next').addEventListener('click', () => showSlide(galleryIndex + 1));
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-figure')) closeLightbox();
+});
+
+// Swipe between screenshots on touch devices
+let touchStartX = null;
+lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+}, { passive: true });
+lightbox.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(deltaX) > 50) showSlide(galleryIndex + (deltaX < 0 ? 1 : -1));
+    touchStartX = null;
+});
+
 // Keyboard Navigation
 document.addEventListener('keydown', (e) => {
+    if (!lightbox.hidden) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showSlide(galleryIndex + 1);
+        if (e.key === 'ArrowLeft') showSlide(galleryIndex - 1);
+        return;
+    }
     if (e.key === 'Escape') {
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu.classList.contains('active')) {
@@ -334,123 +428,18 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Performance optimizations
-let ticking = false;
+// Resume Download
+document.getElementById('resume-download').addEventListener('click', () => {
+    showNotification('Resume download started! 📄✨', 'success');
 
-function updateOnScroll() {
-    // Parallax effect for hero section
-    const scrolled = window.pageYOffset;
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.style.transform = `translateY(${scrolled * 0.1}px)`;
-    }
-
-    // Update particles position
-    const particles = document.querySelectorAll('.particle');
-    particles.forEach(particle => {
-        const speed = parseFloat(particle.dataset.speed) || 1;
-        particle.style.transform = `translateY(${scrolled * speed * 0.05}px)`;
-    });
-
-    ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(updateOnScroll);
-        ticking = true;
+    // Optional: Analytics event
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'download', {
+            'event_category': 'Resume',
+            'event_label': 'Istiaq Ahmed Resume'
+        });
     }
 });
-
-// Initialize particles with random speeds
-function initializeParticles() {
-    setInterval(() => {
-        createParticle();
-    }, 800);
-}
-
-// Enhanced particle creation
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * window.innerWidth + 'px';
-    particle.style.animationDuration = (Math.random() * 15 + 8) + 's';
-    particle.style.animationDelay = Math.random() * 5 + 's';
-    particle.dataset.speed = (Math.random() * 2 + 0.5).toString();
-
-    // Random particle colors
-    const colors = ['#06b6d4', '#6366f1', '#8b5cf6', '#10b981'];
-    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-    document.getElementById('particles').appendChild(particle);
-
-    setTimeout(() => {
-        if (particle.parentNode) {
-            particle.remove();
-        }
-    }, 25000);
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Add initial animations
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 100);
-
-    // Initialize enhanced features
-    initializeParticles();
-
-    // Add focus styles for accessibility
-    document.querySelectorAll('a, button, input, textarea').forEach(element => {
-        element.addEventListener('focus', () => {
-            element.style.outline = '2px solid #06b6d4';
-            element.style.outlineOffset = '2px';
-        });
-
-        element.addEventListener('blur', () => {
-            element.style.outline = 'none';
-        });
-    });
-});
-
-// Add smooth transitions when changing themes or color schemes
-function applyThemeTransition() {
-    document.body.style.transition = 'all 0.3s ease';
-    setTimeout(() => {
-        document.body.style.transition = '';
-    }, 300);
-}
-
-// Enhanced error handling for resume download
-function downloadResume() {
-    try {
-        // Local resume file
-        const resumeUrl = 'assets/resume/Istiaq_Ahmed_Resume.pdf';
-        const link = document.createElement('a');
-        link.href = resumeUrl;
-        link.download = 'Istiaq_Ahmed_Resume.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Show success message
-        showNotification('Resume download started! 📄✨', 'success');
-
-        // Optional: Analytics event
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'download', {
-                'event_category': 'Resume',
-                'event_label': 'Istiaq Ahmed Resume'
-            });
-        }
-
-    } catch (error) {
-        console.error('Resume download error:', error);
-        showNotification('Sorry, resume download failed. Please try again later.', 'error');
-    }
-}
-
 
 // Add contact form validation feedback
 document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
@@ -483,18 +472,12 @@ function validateField(field) {
     if (!isValid) {
         field.classList.add('error');
         field.style.borderColor = '#ef4444';
-    } else {
+    } else if (value) {
         field.style.borderColor = '#10b981';
     }
 
     return isValid;
 }
 
-// Print styles optimization
-window.addEventListener('beforeprint', () => {
-    document.body.classList.add('printing');
-});
-
-window.addEventListener('afterprint', () => {
-    document.body.classList.remove('printing');
-});
+// Footer year
+document.getElementById('footer-year').textContent = new Date().getFullYear();

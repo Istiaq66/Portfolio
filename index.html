@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Istiaq Ahmed - Flutter Developer & Software Engineer</title>
+    <meta name="description"
+        content="Istiaq Ahmed — Flutter Developer & Software Engineer at Greentech Apps Foundation. Mobile apps, projects, career and contact.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Istiaq Ahmed - Flutter Developer & Software Engineer">
+    <meta property="og:description"
+        content="Flutter Developer crafting mobile experiences and Islamic applications that serve millions worldwide.">
+    <meta property="og:url" content="https://istiaq66.github.io/Portfolio/">
+    <!--=============== FONTS ===============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <!--=============== FAVICON ===============-->
@@ -31,7 +44,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">IA</a>
+            <a href="#home" class="logo" aria-label="Istiaq Ahmed - back to top">IA</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#timeline">Career</a></li>
@@ -39,13 +52,14 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu"
+                aria-controls="mobile-menu" aria-expanded="false">☰</button>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">×</button>
         <div class="mobile-menu-links">
             <a href="#home" onclick="toggleMobileMenu()">Home</a>
             <a href="#timeline" onclick="toggleMobileMenu()">Career</a>
@@ -242,7 +256,8 @@
                         <h3>Download My Resume</h3>
                         <p>Get detailed information about my experience, skills, and achievements</p>
                     </div>
-                    <a href="#" class="resume-download-btn-mini" onclick="downloadResume()">
+                    <a href="assets/resume/Istiaq_Ahmed_Resume.pdf" download="Istiaq_Ahmed_Resume.pdf"
+                        class="resume-download-btn-mini" id="resume-download">
                         <span>📥</span>
                         Download
                     </a>
@@ -313,7 +328,28 @@
             <h2 class="section-title fade-in">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card fade-in">
-                    <div class="project-image">🌄</div>
+                    <!-- Screenshots: add <img> tags here; the first 3 show on the card, all show in the gallery -->
+                    <button type="button" class="project-image project-shots" style="--shots-bg: #0f5132"
+                        aria-label="View Subh-warrior screenshots">
+                        <img src="assets/img/projects/subhwarrior/prayer-times-thumb.webp"
+                            data-full="assets/img/projects/subhwarrior/prayer-times.webp"
+                            alt="Subh-warrior home screen with Fajr prayer times" width="360" height="640"
+                            loading="lazy" decoding="async">
+                        <img src="assets/img/projects/subhwarrior/progress-thumb.webp"
+                            data-full="assets/img/projects/subhwarrior/progress.webp"
+                            alt="Subh-warrior 28-day challenge progress screen" width="360" height="640"
+                            loading="lazy" decoding="async">
+                        <img src="assets/img/projects/subhwarrior/log-morning-thumb.webp"
+                            data-full="assets/img/projects/subhwarrior/log-morning.webp"
+                            alt="Subh-warrior daily morning log screen" width="360" height="640" loading="lazy"
+                            decoding="async">
+                        <img src="assets/img/projects/subhwarrior/reminders-thumb.webp"
+                            data-full="assets/img/projects/subhwarrior/reminders.webp"
+                            alt="Subh-warrior Fajr reminder settings screen" width="360" height="640"
+                            loading="lazy" decoding="async">
+                        <span class="project-shots-hint"><i class="ri-zoom-in-line" aria-hidden="true"></i> View
+                            screens</span>
+                    </button>
                     <div class="project-content">
                         <h3 class="project-title">Subh-warrior</h3>
                         <p class="project-description">
@@ -328,9 +364,10 @@
                             <span class="tech-tag">UI/UX</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Istiaq66/subhwarrior" class="project-link">Github →</a>
-                            <a href="https://github.com/Istiaq66/subhwarrior/releases" class="project-link">Live Demo
-                                →</a>
+                            <a href="https://github.com/Istiaq66/subhwarrior" target="_blank" rel="noopener"
+                                class="project-link">GitHub →</a>
+                            <a href="https://github.com/Istiaq66/subhwarrior/releases" target="_blank" rel="noopener"
+                                class="project-link">Live Demo →</a>
                         </div>
                     </div>
                 </div>
@@ -351,9 +388,10 @@
                             <span class="tech-tag">Sensors</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Istiaq66/fitnesspal_user" class="project-link">GitHub →</a>
+                            <a href="https://github.com/Istiaq66/fitnesspal_user" target="_blank" rel="noopener"
+                                class="project-link">GitHub →</a>
                             <a href="https://github.com/Istiaq66/fitnesspal_user/releases/download/v8/app-release.apk"
-                                class="project-link">Live Demo →</a>
+                                target="_blank" rel="noopener" class="project-link">Live Demo →</a>
                         </div>
                     </div>
                 </div>
@@ -374,7 +412,8 @@
                             <span class="tech-tag">Supabase</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Istiaq66/Bidding-Marketplace" class="project-link">Source Code →</a>
+                            <a href="https://github.com/Istiaq66/Bidding-Marketplace" target="_blank" rel="noopener"
+                                class="project-link">Source Code →</a>
                         </div>
                     </div>
                 </div>
@@ -399,7 +438,7 @@
                             <div class="contact-method-icon">📧</div>
                             <div class="contact-method-info">
                                 <div class="contact-method-title">Email</div>
-                                <div class="contact-method-detail">ahmedboby66@gmail.com</div>
+                                <a href="mailto:ahmedboby66@gmail.com" class="contact-method-detail">ahmedboby66@gmail.com</a>
                             </div>
                         </div>
 
@@ -409,7 +448,7 @@
                                 <div class="contact-method-title">WhatsApp</div>
                                 <div class="contact-method-detail">+880 1879237935</div>
                                 <a href="https://api.whatsapp.com/send?phone=8801879237935&text=Hello, more information!"
-                                    target="_blank" class="contact-method-btn">
+                                    target="_blank" rel="noopener" class="contact-method-btn">
                                     Write Me →
                                 </a>
                             </div>
@@ -420,7 +459,7 @@
                             <div class="contact-method-info">
                                 <div class="contact-method-title">Messenger</div>
                                 <div class="contact-method-detail">ahmed.boby.752</div>
-                                <a href="https://m.me/ahmed.boby.752" target="_blank" class="contact-method-btn">
+                                <a href="https://m.me/ahmed.boby.752" target="_blank" rel="noopener" class="contact-method-btn">
                                     Write Me →
                                 </a>
                             </div>
@@ -428,11 +467,15 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="https://github.com/Istiaq66" target="_blank" class="social-link">💻</a>
-                        <a href="https://www.linkedin.com/in/istiaq-ahmed-7772641a9" target="_blank"
-                            class="social-link">💼</a>
-                        <a href="mailto:ahmedboby66@gmail.com" class="social-link">📧</a>
-                        <a href="tel:+8801879237935" class="social-link">📱</a>
+                        <a href="https://github.com/Istiaq66" target="_blank" rel="noopener" class="social-link"
+                            aria-label="GitHub" title="GitHub"><i class="ri-github-fill" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/in/istiaq-ahmed-7772641a9" target="_blank" rel="noopener"
+                            class="social-link" aria-label="LinkedIn" title="LinkedIn"><i class="ri-linkedin-fill"
+                                aria-hidden="true"></i></a>
+                        <a href="mailto:ahmedboby66@gmail.com" class="social-link" aria-label="Email"
+                            title="Email"><i class="ri-mail-line" aria-hidden="true"></i></a>
+                        <a href="tel:+8801879237935" class="social-link" aria-label="Phone" title="Phone"><i
+                                class="ri-phone-line" aria-hidden="true"></i></a>
                     </div>
                 </div>
 
@@ -445,26 +488,26 @@
 
                     <form class="contact-form" id="contact-form">
                         <div class="form-group">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="user_name" required placeholder="Enter your full name..."
+                            <label class="form-label" for="user_name">Full Name</label>
+                            <input type="text" id="user_name" name="user_name" autocomplete="name" required placeholder="Enter your full name..."
                                 class="form-input" />
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" name="user_email" required placeholder="Enter your email address..."
+                            <label class="form-label" for="user_email">Email Address</label>
+                            <input type="email" id="user_email" name="user_email" autocomplete="email" required placeholder="Enter your email address..."
                                 class="form-input" />
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Project Subject</label>
-                            <input type="text" name="user_subject" required placeholder="What's your project about..."
+                            <label class="form-label" for="user_subject">Project Subject</label>
+                            <input type="text" id="user_subject" name="user_subject" required placeholder="What's your project about..."
                                 class="form-input" />
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Project Details</label>
-                            <textarea name="user_project" placeholder="Tell me about your project..."
+                            <label class="form-label" for="user_project">Project Details</label>
+                            <textarea id="user_project" name="user_project" placeholder="Tell me about your project..."
                                 class="form-textarea" rows="4"></textarea>
                         </div>
 
@@ -477,11 +520,29 @@
         </div>
     </section>
 
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="assets/js/scrollreveal.min.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© <span id="footer-year">2026</span> Istiaq Ahmed. Built with HTML, CSS & JavaScript.</p>
+            <a href="#home" class="footer-top" aria-label="Back to top"><i class="ri-arrow-up-line"
+                    aria-hidden="true"></i></a>
+        </div>
+    </footer>
 
-    <!--=============== SWIPER JS ===============-->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+    <!-- Screenshot Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project screenshots" hidden>
+        <button type="button" class="lightbox-close" aria-label="Close"><i class="ri-close-line"
+                aria-hidden="true"></i></button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous screenshot"><i
+                class="ri-arrow-left-s-line" aria-hidden="true"></i></button>
+        <figure class="lightbox-figure">
+            <img class="lightbox-img" src="" alt="">
+            <figcaption class="lightbox-caption"></figcaption>
+        </figure>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next screenshot"><i
+                class="ri-arrow-right-s-line" aria-hidden="true"></i></button>
+    </div>
+
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
 </body>
