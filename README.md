@@ -18,6 +18,7 @@ Personal portfolio site for **Istiaq Ahmed**, Flutter Developer & Software Engin
 | --- | --- | --- |
 | [Subh-warrior](https://github.com/Istiaq66/subhwarrior) | Daily routine tracker: prayer time notifications, streak tracking, progress visualization | Flutter, Firebase, Provider, UI/UX |
 | [Play Store Assets](https://istiaq66.github.io/play-store-assets/) | Browser tool that generates Google Play icon, feature graphic and captioned screenshots, validated against Play's rules | JavaScript, Canvas API, ES Modules |
+| [Play Store Screenshots](https://github.com/Istiaq66/playstore-screenshots) | Claude Code skill that drives the Android emulator and turns app screens into captioned Play Store screenshots | Claude Code, Python, Pillow, ADB |
 | [AI-Powered FitnessPal](https://github.com/Istiaq66/fitnesspal_user) | AI-driven fitness companion: step tracking, workout & diet plans via Gemini API | Flutter, Provider, Firebase, Gemini AI, Sensors |
 | [Bidding Marketplace](https://github.com/Istiaq66/Bidding-Marketplace) | Cross-platform auction app: list items, real-time bids, watchlists, bid history | Flutter, Provider, Firebase, Firestore, Supabase |
 

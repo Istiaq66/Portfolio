@@ -479,5 +479,178 @@ function validateField(field) {
     return isValid;
 }
 
+// Hero Typing Effect
+const typed = document.querySelector('.typed');
+if (typed && !prefersReducedMotion) {
+    const words = typed.dataset.words.split('|');
+    let wordIndex = 0;
+    let charIndex = words[0].length;
+    let deleting = true;
+    typed.textContent = words[0];
+
+    function typeTick() {
+        const word = words[wordIndex];
+        charIndex += deleting ? -1 : 1;
+        typed.textContent = word.slice(0, charIndex);
+
+        let delay = deleting ? 45 : 90;
+        if (!deleting && charIndex === word.length) {
+            deleting = true;
+            delay = 2000;
+        } else if (deleting && charIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            delay = 300;
+        }
+        setTimeout(typeTick, delay);
+    }
+    setTimeout(typeTick, 2500);
+}
+
+// Hero Phone: cycle through app screens
+const phoneScreens = document.querySelectorAll('.hero-phone-screen img');
+const phoneDots = document.querySelectorAll('.hero-phone-dots span');
+if (phoneScreens.length > 1 && !prefersReducedMotion) {
+    let currentScreen = 0;
+    setInterval(() => {
+        if (document.hidden) return;
+        phoneScreens[currentScreen].classList.remove('active');
+        phoneDots[currentScreen]?.classList.remove('active');
+        currentScreen = (currentScreen + 1) % phoneScreens.length;
+        phoneScreens[currentScreen].classList.add('active');
+        phoneDots[currentScreen]?.classList.add('active');
+    }, 3200);
+}
+
+// Tech Marquee: duplicate the logos so the loop is seamless
+const techTrack = document.querySelector('.tech-track');
+if (techTrack) {
+    techTrack.querySelectorAll('.tech-item').forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        techTrack.appendChild(clone);
+    });
+}
+
+// Card Spotlight: glow follows the pointer
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.project-card, .skill-card, .career-stat-item, .timeline-content, .ship-fact, .activity-card, .contact-info-section, .contact-form-section, .resume-card-mini').forEach(card => {
+        card.classList.add('spotlight');
+        card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+            card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+        });
+    });
+}
+
+// Live Coding Activity (Codeforces + GitHub)
+// The HTML holds static fallbacks; live values replace them when the APIs answer.
+const CACHE_MS = 6 * 60 * 60 * 1000;
+
+async function cached(key, compute) {
+    try {
+        const entry = JSON.parse(localStorage.getItem(key));
+        if (entry && Date.now() - entry.t < CACHE_MS) return entry.v;
+    } catch (e) { /* storage unavailable */ }
+    const value = await compute();
+    try {
+        localStorage.setItem(key, JSON.stringify({ t: Date.now(), v: value }));
+    } catch (e) { /* storage unavailable */ }
+    return value;
+}
+
+async function getJSON(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${url} → ${res.status}`);
+    return res.json();
+}
+
+function setLiveNumber(id, value) {
+    const el = document.getElementById(id);
+    if (el && Number.isFinite(value) && value > 0) {
+        animateCounter(el, 0, value, prefersReducedMotion ? 0 : 1200);
+    }
+}
+
+const LANG_COLORS = {
+    Dart: '#00B4AB', JavaScript: '#f1e05a', TypeScript: '#3178c6', Java: '#b07219', Kotlin: '#A97BFF',
+    Python: '#3572A5', PHP: '#4F5D95', 'C++': '#f34b7d', HTML: '#e34c26', CSS: '#563d7c'
+};
+
+function timeAgo(date) {
+    const days = Math.round((Date.now() - new Date(date)) / 86400000);
+    const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+    if (days < 30) return rtf.format(-days, 'day');
+    if (days < 365) return rtf.format(-Math.round(days / 30), 'month');
+    return rtf.format(-Math.round(days / 365), 'year');
+}
+
+// The repo list is curated in the HTML; live data adds update times and sorts by latest push
+function renderRepos(repos) {
+    const list = document.getElementById('repo-list');
+    if (!list) return;
+    const items = [...list.querySelectorAll('.repo-item[data-repo]')];
+    items.forEach(item => {
+        const repo = repos[item.dataset.repo];
+        if (!repo) return;
+        item.dataset.pushed = repo.pushed;
+        item.querySelector('.repo-updated').textContent = ` · updated ${timeAgo(repo.pushed)}`;
+        if (repo.language) {
+            const meta = item.querySelector('.repo-meta');
+            meta.firstElementChild.style.setProperty('--lang', LANG_COLORS[repo.language] || '#8b5cf6');
+            meta.childNodes[1].textContent = repo.language;
+        }
+    });
+    items.sort((a, b) => (b.dataset.pushed || '').localeCompare(a.dataset.pushed || ''));
+    list.append(...items);
+}
+
+function loadLiveActivity() {
+    cached('cf-C191051', async () => {
+        const [status, rating] = await Promise.all([
+            getJSON('https://codeforces.com/api/user.status?handle=C191051'),
+            getJSON('https://codeforces.com/api/user.rating?handle=C191051')
+        ]);
+        const solved = new Set(status.result
+            .filter(s => s.verdict === 'OK')
+            .map(s => `${s.problem.contestId}-${s.problem.index}`));
+        return { solved: solved.size, contests: rating.result.length };
+    }).then(cf => {
+        setLiveNumber('cf-solved', cf.solved);
+        setLiveNumber('cf-contests', cf.contests);
+    }).catch(err => console.warn('Codeforces stats unavailable:', err));
+
+    cached('gh-repos', async () => {
+        const repos = await getJSON('https://api.github.com/users/Istiaq66/repos?per_page=100');
+        return Object.fromEntries(repos.map(r => [r.name, { language: r.language, pushed: r.pushed_at }]));
+    }).then(renderRepos).catch(err => console.warn('GitHub repos unavailable:', err));
+}
+
+function loadReleaseCount() {
+    cached('gh-releases', async () => {
+        const lists = await Promise.all(['subhwarrior', 'Bidding-Marketplace'].map(repo =>
+            getJSON(`https://api.github.com/repos/Istiaq66/${repo}/releases?per_page=100`)));
+        return lists.reduce((total, list) => total + list.length, 0);
+    }).then(count => setLiveNumber('release-count', count))
+        .catch(err => console.warn('Release count unavailable:', err));
+}
+
+// Only fetch when the visitor gets near those sections
+function whenNear(selector, callback) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    const nearObserver = new IntersectionObserver((entries) => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            nearObserver.disconnect();
+            callback();
+        }
+    }, { rootMargin: '600px 0px' });
+    nearObserver.observe(target);
+}
+
+whenNear('#shipping', loadReleaseCount);
+whenNear('#activity', loadLiveActivity);
+
 // Footer year
 document.getElementById('footer-year').textContent = new Date().getFullYear();
