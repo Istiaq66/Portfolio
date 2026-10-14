@@ -926,7 +926,7 @@ nav.scrolled {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
 }
 
@@ -1023,6 +1023,45 @@ nav.scrolled {
 
 .project-card:hover .project-shots img:nth-of-type(3) {
     transform: translateX(55%) rotate(11deg);
+}
+
+/* Web variant: one screenshot in a browser frame */
+.project-shots.project-shots--web img {
+    top: 32px;
+    width: 86%;
+    aspect-ratio: 16 / 10;
+    object-position: top left;
+    border-radius: 10px 10px 0 0;
+    border: none;
+    border-top: 18px solid #1e1e2a;
+    transform: translateX(-50%);
+}
+
+.project-shots.project-shots--web::before {
+    /* browser window dots */
+    content: '';
+    position: absolute;
+    top: 38px;
+    left: calc(7% + 8px);
+    z-index: 4;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f87171;
+    box-shadow: 10px 0 #fbbf24, 20px 0 #34d399;
+    transition: transform 0.4s ease;
+}
+
+.project-shots.project-shots--web img:nth-of-type(n + 2) {
+    display: none;
+}
+
+.project-card:hover .project-shots--web img:nth-of-type(1) {
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.project-card:hover .project-shots--web::before {
+    transform: translateY(-8px);
 }
 
 .project-shots-hint {
@@ -1420,7 +1459,7 @@ a.contact-method-detail:hover {
 .lightbox-img {
     max-height: calc(100vh - 6rem);
     max-height: calc(100dvh - 6rem);
-    max-width: min(90vw, 480px);
+    max-width: min(88vw, 1200px);
     width: auto;
     border-radius: 20px;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
@@ -1428,7 +1467,7 @@ a.contact-method-detail:hover {
 }
 
 .lightbox-caption {
-    max-width: min(90vw, 480px);
+    max-width: min(88vw, 1200px);
     color: var(--text-secondary);
     font-size: 0.9rem;
     text-align: center;
